@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Todoitem = (props: {text: string, index: number, onItemClick: Function}) => {
 
-  const handleClick = () => {
-        // 從props.onItemClick傳入
-        props.onItemClick(props.index);
-    };
+export default class Todoitem extends React.Component {
 
-  return <li onClick={handleClick}>{props.text}</li>;
-};
+  static propTypes= {
+    text: PropTypes.string,
+    index: PropTypes.number,
+    onItemClick: PropTypes.Function
+  }
 
-// 匯出TodoItem模組
-export default Todoitem;
+  handleClick = () => {
+    // 從props.onItemClick傳入
+    this.props.onItemClick(this.props.index);
+  }
+
+  render() {
+    return (
+      <li onClick={this.handleClick}>{this.props.text}</li>
+    );
+  }
+}
