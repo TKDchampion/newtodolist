@@ -2,26 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from './Todoitem';
+import AddTodo from './AddTodo';
 
 export default class Todolist extends React.Component {
 
-    static propTypes = {
-        initText: PropTypes.string,
-    }
 
     state = {
         items: [],
-        inputValue: '',
-    }
-
-    // 處理的方法，用e.target可以獲取到輸入框的值
-    // 輸入文字時
-    handleChange = (e) => {
-        if (e.target instanceof HTMLInputElement) {
-            this.setState({
-                inputValue: e.target.value,
-            });
-        }
     }
 
     // 按下Enter時
@@ -68,15 +55,7 @@ export default class Todolist extends React.Component {
     render() {
         return (
           <div>
-            <input
-              type="text"
-              value={this.state.inputValue}
-              placeholder={this.props.initText}
-              onKeyPress={this.handleKeyPress}
-              onChange={this.handleChange}
-                />
-
-            <button onClick={this.addTodo}>OK</button>
+              <AddTodo />
             <ul>
               {
                  this.state.items.map((value, index) => (
