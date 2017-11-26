@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header.js';
 import Content from './components/Content.js';
+import App from './components/App.js';
 import './Home.less';
 
 export default class Home extends Component {
@@ -8,8 +9,9 @@ export default class Home extends Component {
     return (
       <div id="pageHome">
         <Header />
-        <Content />
+        <App />
       </div>
     );
   }
 }
+
