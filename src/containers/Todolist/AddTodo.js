@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
-import { stat } from 'fs';
 
-export default class AddTodo extends Component{
+export default class AddTodo extends Component {
 
     state = {
         inputValue: '',
@@ -24,18 +23,34 @@ export default class AddTodo extends Component{
         }
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter' && e.target instanceof HTMLInputElement) {
+            this.setState({
+                inputValue: '',
+            });
+            this.props.handleKeyPress(e);
+        }
+    }
+
+    onAddClick = () => {
+        this.setState({
+            inputValue: '',
+        });
+        this.props.onAddClick(this.state.inputValue);
+    }
+
     render() {
-        return(
-            <div>
-                <input
-                    type="text"
-                    value={this.state.inputValue}
-                    placeholder={this.props.initText}
-                    onKeyPress={this.props.handleKeyPress}
-                    onChange={this.handleChange}
+        return (
+          <div>
+            <input
+              type="text"
+              value={this.state.inputValue}
+              placeholder={this.props.initText}
+              onKeyPress={this.handleKeyPress}
+              onChange={this.handleChange}
                 />
-                <button onClick={() => this.props.onAddClick(this.state.inputValue)}>OK</button>
-            </div>
+            <button onClick={this.onAddClick}>OK</button>
+          </div>
         );
     }
 }

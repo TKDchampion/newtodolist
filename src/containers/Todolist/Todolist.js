@@ -14,7 +14,7 @@ export default class Todolist extends React.Component {
     // 按下Enter時
     handleKeyPress = (e) => {
         if (e.key === 'Enter' && e.target instanceof HTMLInputElement) {
-
+            debugger;
             // 值由前面開始排列
             // https://github.com/eyesofkids/ironman2017/tree/master/day12_side_effect_pure_func
             const newItems = [e.target.value, ...this.state.items];
@@ -22,14 +22,14 @@ export default class Todolist extends React.Component {
             // 按下enter後，加到列表項目中並清空輸入框
             this.setState({
                 items: newItems,
-                inputValue: '',
             });
         }
     }
 
     addTodo = (text) => {
 
-        const newItems = [this.state.inputValue, ...this.state.items];
+        debugger;
+        const newItems = [text, ...this.state.items];
         this.setState({
             items: newItems,
             inputValue: '',
@@ -54,9 +54,10 @@ export default class Todolist extends React.Component {
     render() {
         return (
           <div>
-              <AddTodo 
-                onAddClick={this.addTodo}
-              />
+            <AddTodo
+              onAddClick={this.addTodo}
+              handleKeyPress={this.handleKeyPress}
+            />
             <ul>
               {
                  this.state.items.map((value, index) => (
