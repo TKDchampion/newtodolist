@@ -40,6 +40,15 @@ export default class Todolist extends React.Component {
         }
     }
 
+    addTodo = () => {
+        console.log(this.state.inputValue);
+
+        const newItems = [this.state.inputValue, ...this.state.items];
+        this.setState({
+            items: newItems,
+            inputValue: '',
+        });
+    }
     // 移除一個item
     handleRemoveItem = (index) => {
         const oldItems = this.state.items;
@@ -54,6 +63,7 @@ export default class Todolist extends React.Component {
         });
     }
 
+
     // 回傳React Element(元素)
     render() {
         return (
@@ -65,6 +75,8 @@ export default class Todolist extends React.Component {
               onKeyPress={this.handleKeyPress}
               onChange={this.handleChange}
                 />
+
+            <button onClick={this.addTodo}>OK</button>
             <ul>
               {
                  this.state.items.map((value, index) => (
