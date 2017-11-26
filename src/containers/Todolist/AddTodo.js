@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
+import { stat } from 'fs';
 
 export default class AddTodo extends Component{
 
@@ -8,7 +9,7 @@ export default class AddTodo extends Component{
     }
 
     static propType = {
-        initText: PropTypes.string,
+        initText: PropType.string,
         addTodo: PropType.function,
         handleKeyPress: PropType.function,
     }
@@ -22,7 +23,7 @@ export default class AddTodo extends Component{
             });
         }
     }
-    
+
     render() {
         return(
             <div>
@@ -33,7 +34,7 @@ export default class AddTodo extends Component{
                     onKeyPress={this.props.handleKeyPress}
                     onChange={this.handleChange}
                 />
-            <button onClick={this.props.addTodo}>OK</button>
+                <button onClick={() => this.props.onAddClick(this.state.inputValue)}>OK</button>
             </div>
         );
     }

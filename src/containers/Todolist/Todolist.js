@@ -27,8 +27,7 @@ export default class Todolist extends React.Component {
         }
     }
 
-    addTodo = () => {
-        console.log(this.state.inputValue);
+    addTodo = (text) => {
 
         const newItems = [this.state.inputValue, ...this.state.items];
         this.setState({
@@ -55,7 +54,9 @@ export default class Todolist extends React.Component {
     render() {
         return (
           <div>
-              <AddTodo />
+              <AddTodo 
+                onAddClick={this.addTodo}
+              />
             <ul>
               {
                  this.state.items.map((value, index) => (
