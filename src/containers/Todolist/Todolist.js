@@ -15,7 +15,7 @@ export default class Todolist extends React.Component {
     // 按下Enter時
     handleKeyPress = (e) => {
         if (e.key === 'Enter' && e.target instanceof HTMLInputElement) {
-           // debugger;
+            // debugger;
             // 值由前面開始排列
             // https://github.com/eyesofkids/ironman2017/tree/master/day12_side_effect_pure_func
             const newItems = [e.target.value, ...this.state.items];
@@ -29,7 +29,7 @@ export default class Todolist extends React.Component {
 
     addTodo = (text) => {
 
-       // debugger;
+        // debugger;
         const newItems = [text, ...this.state.items];
         this.setState({
             items: newItems,
@@ -51,7 +51,21 @@ export default class Todolist extends React.Component {
     }
     // 編輯
     handleEdit = () => {
-        console.log(this.state.items);
+        console.log(this.state.items); // debug
+        const task = this.state.items;
+
+        if (this.state.isEditng) {
+            return (
+              <td>
+                <input type="text" defaultValue={task} />
+              </td>
+            );
+        }
+        return (
+          <td onClick>
+            {this.task}
+          </td>
+        );
     }
 
 
@@ -62,26 +76,27 @@ export default class Todolist extends React.Component {
             <AddTodo
               addClick={this.addTodo}
               handleKeyPress={this.handleKeyPress}
-            />
+                />
             <ul>
               {
-                 this.state.items.map((value, index) => (
-                   <TodoItem
-                     key={index}
-                     text={value}
-                     index={index}
-                     onItemClick={this.handleRemoveItem}
-                     />
-                 ))
+                this.state.items.map((value, index) => (
+                  <TodoItem
+                    key={index}
+                    text={value}
+                    index={index}
+                   // onItemClick={this.handleRemoveItem}
+                   />
+                ))
               }
               {
-                 this.state.items.map(index => (
-                   <Edit
-                     key={index}
-                     index={index}
-                     Edit={this.handleEdit}
-                     />
-                 ))
+                this.state.items.map(index => (
+                  <Edit
+                    key={index}
+                    index={index}
+                    Edit={this.handleEdit}
+                    newState={this.state.isEditng}
+                            />
+                ))
               }
             </ul>
           </div>
