@@ -7,10 +7,12 @@ export default class Edit extends Component {
     static propTypes = {
         Edit: PropTypes.function,
         text: PropTypes.string,
+        newState: PropTypes.State,
     }
 
     onEditClick = () => {
         this.props.Edit(this.props.text);
+        this.props.State({ isEditng: true });
     }
 
     render() {

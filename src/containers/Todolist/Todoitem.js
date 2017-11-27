@@ -5,6 +5,13 @@ import Edit from './Edit';
 
 export default class Todoitem extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        isEditng: false
+    };
+  }
   static propTypes= {
     text: PropTypes.string,
     index: PropTypes.number,
@@ -19,6 +26,15 @@ export default class Todoitem extends React.Component {
   // 編輯
   handleEdit = () => {
     console.log(this.props.text);
+    if (this.state.isEditng === true) {
+      return (
+        <td>
+          <form onSubmit>
+            <input type="text" defaultValue={this.props.text} />
+          </form>
+        </td>
+      );
+    }
   }
 
   render() {
@@ -27,7 +43,10 @@ export default class Todoitem extends React.Component {
         <li>
           {this.props.text}
           <button onClick={this.handleClick}>Delete</button>
-          <Edit Edit={this.handleEdit}/>
+          <Edit
+            Edit={this.handleEdit}
+            newState={this.state.isEditng}
+          />
         </li>
       </div>
     );
