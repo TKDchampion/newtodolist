@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export default class Todoitem extends React.Component {
 
   static propTypes= {
@@ -17,7 +16,10 @@ export default class Todoitem extends React.Component {
 
   render() {
     return (
-      <li onClick={this.handleClick}>{this.props.text}</li>
+      <div>
+        <li onClick={this.handleClick}>{this.props.text}</li>
+        <button onClick={this.handleClick}>Delete</button>
+      </div>
     );
   }
 }

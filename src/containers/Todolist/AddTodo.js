@@ -9,7 +9,7 @@ export default class AddTodo extends Component {
 
     static propType = {
         initText: PropType.string,
-        addTodo: PropType.function,
+        addClick: PropType.function,
         handleKeyPress: PropType.function,
     }
 
@@ -36,7 +36,7 @@ export default class AddTodo extends Component {
         this.setState({
             inputValue: '',
         });
-        this.props.onAddClick(this.state.inputValue);
+        this.props.addClick(this.state.inputValue);
     }
 
     render() {
