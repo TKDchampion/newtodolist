@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Edit from './Edit';
+
 
 export default class Todoitem extends React.Component {
 
@@ -14,11 +16,19 @@ export default class Todoitem extends React.Component {
     this.props.onItemClick(this.props.index);
   }
 
+  // 編輯
+  handleEdit = () => {
+    console.log(this.props.text);
+  }
+
   render() {
     return (
       <div>
-        <li onClick={this.handleClick}>{this.props.text}</li>
-        <button onClick={this.handleClick}>Delete</button>
+        <li>
+          {this.props.text}
+          <button onClick={this.handleClick}>Delete</button>
+          <Edit Edit={this.handleEdit}/>
+        </li>
       </div>
     );
   }

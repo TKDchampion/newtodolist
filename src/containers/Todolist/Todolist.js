@@ -1,9 +1,7 @@
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import TodoItem from './Todoitem';
 import AddTodo from './AddTodo';
-import Edit from './Edit';
 
 export default class Todolist extends React.Component {
 
@@ -49,24 +47,6 @@ export default class Todolist extends React.Component {
             items: newItems,
         });
     }
-    // 編輯
-    handleEdit = () => {
-        console.log(this.state.items); // debug
-        const task = this.state.items;
-
-        if (this.state.isEditng) {
-            return (
-              <td>
-                <input type="text" defaultValue={task} />
-              </td>
-            );
-        }
-        return (
-          <td onClick>
-            {this.task}
-          </td>
-        );
-    }
 
 
     // 回傳React Element(元素)
@@ -84,18 +64,8 @@ export default class Todolist extends React.Component {
                     key={index}
                     text={value}
                     index={index}
-                   // onItemClick={this.handleRemoveItem}
+                    onItemClick={this.handleRemoveItem}
                    />
-                ))
-              }
-              {
-                this.state.items.map(index => (
-                  <Edit
-                    key={index}
-                    index={index}
-                    Edit={this.handleEdit}
-                    newState={this.state.isEditng}
-                            />
                 ))
               }
             </ul>
